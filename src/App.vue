@@ -7,7 +7,7 @@
       <mytable></mytable>
     </div>    
     <!-- 弹出层 -->
-    <alertcontent :flag='flag' :hide='hide'></alertcontent>
+    <alertcontent :flag='flag' :Show='Show'></alertcontent>
   </div>
 </template>
 
@@ -22,13 +22,9 @@ export default {
     };
   },
   methods: {
-    Show(fg){
-      console.log(fg)
-      this.flag = fg
-    },
-    hide(){
+    Show(){
       this.flag = !this.flag
-    } 
+    }
   },
   components: {
     mysearch,

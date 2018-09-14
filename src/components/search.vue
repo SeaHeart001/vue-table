@@ -12,23 +12,20 @@
         <input type="text" placeholder="输入关键字" class='searchInput'>
         <div class='icon iconfont icon-sousuo'></div>
         <button class='totalBtn searchBtn'>搜索</button>
-        <button class='totalBtn addBtn' @click=showAlert()>添加</button>
+        <button class='totalBtn addBtn' @click='Show()'>添加</button>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
-  props: ['Show'],
+  props: ['Show','flag'],
   data() {
     return {
-      flag : false,
+
     }
   },
   methods: {
-    showAlert(){
-      this.flag = true
-      this.Show(this.flag)
-    }
+    
   },
   components: {
 

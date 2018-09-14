@@ -3,7 +3,7 @@
         <div class='alertContent'>
             <div class='alertTop'>
                 <div class='topLeft'>新增人员</div>
-                <div class='topRight iconfont icon-anniu_guanbi' @click='hide()'></div>
+                <div class='topRight iconfont icon-anniu_guanbi' @click='Show()'></div>
             </div>
             <div class='alertBody'>
                 <div class="item">
@@ -42,7 +42,7 @@
 
 <script type="text/ecmascript-6">
 export default {
-  props: ['flag','hide'],
+  props: ['flag','Show'],
   data() {
     return {
        
