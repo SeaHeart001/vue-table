@@ -16,7 +16,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr class='tableTr tableBody'>
+                  <tr class='tableTr tableBody' v-for="item in new Array(10)">
                       <td style='width: 5%;'>
                           <input type="checkbox">
                       </td>
@@ -43,39 +43,35 @@
 export default {
   data() {
     return {
-
+   
     }
-  },
-  components: {
-
   }
 }
 </script>
 
 <style scoped>
-.tableBox,
-.tableWrap {
-  width: 100%;
-  min-width: 1000px;
-  overflow: auto;
-  border-collapse: collapse;
-}
-.tableTr > th {
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  background-color: rgb(200, 198, 202);
-  font-size: 14px;
-}
-.tableBody > td {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  font-size: 14px;
-  color: #333
-}
-.tableTr > th,
-.tableTr > td {
-  border: 1px solid #999;
-}
+    .tableBox,
+    .tableWrap {
+    width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+    }
+    .tableTr > th {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background-color: rgb(228, 222, 235);
+    font-size: 14px;
+    }
+    .tableBody > td {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #333
+    }
+    .tableTr > th,
+    .tableTr > td {
+    border: 1px solid #999;
+    }
 </style>
