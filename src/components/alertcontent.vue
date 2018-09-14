@@ -1,6 +1,7 @@
 <template>
- <div class='alertWrap' v-show='flag'>
-        <div class='alertContent'>
+    <div class='alertWrap' v-show='flag'>
+      <transition name="fade" >
+          <div class='alertContent' v-show='flag'>
             <div class='alertTop'>
                 <div class='topLeft'>新增人员</div>
                 <div class='topRight iconfont icon-anniu_guanbi' @click='Show()'></div>
@@ -32,11 +33,13 @@
                 </div>
             </div>
             <div class='alertBtn'>
-                <button class='totalBtn removeBtn'>取消</button>
+                <button class='totalBtn removeBtn' @click='Show()'>取消</button>
                 &nbsp;
                 <button class='totalBtn saveBtn'>保存</button>
             </div>
         </div>
+    </transition>
+  
     </div>
 </template>
 
@@ -60,6 +63,7 @@ export default {
 <style scoped>
 /* 弹出层 */
 .alertWrap {
+  display: flex;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -68,16 +72,24 @@ export default {
   right: 0;
   bottom: 0;
   background-color: rgba(153, 153, 153, 0.6);
+  justify-content: center;
+  align-items: center
 }
 .alertContent {
   position: relative;
   width: 450px;
   height: 350px;
   background-color: #fff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 5px;
+}
+.fade-enter-active,.fade-leave-active{
+  transform-origin: 50% 50%;
+  transition: all 0.5s;
+  transform: scale(1)
+}
+.fade-enter,.fade-leave-to{
+  
+  transform: scale(0)
 }
 .alertTop {
   overflow: hidden;

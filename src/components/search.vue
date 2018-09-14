@@ -65,6 +65,12 @@ export default {
   padding: 10px;
   outline: none;
 }
+.searchInput::-webkit-input-placeholder {
+  /* placeholder颜色  */
+  color: #999;
+  /* placeholder字体大小  */
+  font-size: 14px;
+}
 .totalBtn {
   box-sizing: border-box;
   height: 28px;
