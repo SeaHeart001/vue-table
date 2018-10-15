@@ -7,7 +7,7 @@
       <mytable :show='show' :msg='msg'></mytable>
     </div>    
     <!-- 弹出层 -->
-    <alertcontent :flag='flag' :flag2='flag2' :show='show' :itemsg='itemsg'></alertcontent>
+    <alertcontent :flag='flag' :flag2='flag2' :show='show' :itemsg='itemsg' :isAddCode='isAddCode'></alertcontent>
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
     return {
       flag: false,
       flag2: false,
+      isAddCode:0,
       msg:[
             {num:'NO.yh001',work:'主任',name:'李珊',tel:'18695330061',date: '2018-8-11 12:23:31'},
             {num:'NO.yh002',work:'主任',name:'鳄鱼',tel:'18696330062',date: '2018-8-12 12:23:32'},
@@ -47,9 +48,13 @@ export default {
       }
       this.itemsg = {}
       if(index+1){
-        console.log('123')
         this.itemsg = this.msg[index]
-        console.log(index,this.itemsg)
+        this.isAddCode = Object.keys(this.itemsg).length
+      }else{
+        if(this.flag){
+          console.log('增加数据')
+          this.isAddCode = Object.keys(this.itemsg).length
+        }
       }
     }
   },

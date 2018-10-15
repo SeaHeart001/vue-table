@@ -4,7 +4,7 @@
           <div class='alertContent' v-show='flag'>
             <div class='alertTop'>
                 <div class='topLeft'>新增人员</div>
-                <div class='topRight iconfont icon-anniu_guanbi' @click='show()'></div>
+                <div class='topRight iconfont icon-anniu_guanbi' @click='closeShow()'></div>
             </div>
             <div class='alertBody'>
                 <div class="item">
@@ -33,9 +33,9 @@
                 </div>
             </div>
             <div class='alertBtn'>
-                <button class='totalBtn removeBtn' @click='show()'>取消</button>
+                <button class='totalBtn removeBtn' @click='closeShow()'>取消</button>
                 &nbsp;
-                <button class='totalBtn saveBtn' :disabled='ableFlag' @click='setMsg()'>保存</button>
+                <button class='totalBtn saveBtn' @click='commit()'>{{commitName}}</button>
             </div>
         </div>
     </transition>
@@ -45,16 +45,23 @@
 
 <script type="text/ecmascript-6">
 export default {
-  props: ['flag','show','flag2','itemsg'],
+  props: ['flag','show','flag2','itemsg','isAddCode'],
   data() {
     return {
        newName:'',
        newWork:'',
        newTel:'',
-       ableFlag:true
+       ableFlag:true,
     }
   },
   computed: {
+    commitName(){
+      if(this.isAddCode){
+        return '保存'
+      }else{
+        return '修改'
+      }
+    },
     name:{
       get(){
         return this.itemsg.name
@@ -84,7 +91,17 @@ export default {
     }
   },
   methods: {
+    commit(){
+      if(this.isAddCode){
+        this.setMsg()
+      }
+    },
     setMsg(){
+      console.log(this.isAddCode)
+      if(this.ableFlag||this.newName===this.itemsg.name&&this.newWork===this.itemsg.work&&this.newTel===this.itemsg.tel){
+        alert('未修改任何数据')
+        return
+      }
       if(!this.newName){
         this.newName = this.itemsg.name
       }
@@ -94,15 +111,20 @@ export default {
       if(!this.newTel){
         this.newTel = this.itemsg.tel
       }
-      console.log(this.newName,this.newWork,this.newTel)
       var bool = confirm('确认修改此数据吗？')
       if(bool){
         this.itemsg.name = this.newName
         this.itemsg.work = this.newWork
         this.itemsg.tel = this.newTel
-        this.show()
         this.ableFlag = true
+        this.show()
       }
+    },
+    closeShow(){
+      this.newName = this.itemsg.name
+      this.newWork = this.itemsg.work
+      this.newTel = this.itemsg.tel
+      this.show()
     }
   }
 }
