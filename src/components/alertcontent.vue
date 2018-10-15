@@ -1,5 +1,5 @@
 <template>
-    <div class='alertWrap' v-show='flag'>
+    <div class='alertWrap' v-show='flag2'>
       <transition name="fade" >
           <div class='alertContent' v-show='flag'>
             <div class='alertTop'>
@@ -8,34 +8,34 @@
             </div>
             <div class='alertBody'>
                 <div class="item">
-                    <span>单位名称:</span><span> 水利局</span>
+                    <span>单位名称:</span><span> 气象局</span>
                 </div>
                 <div class="item">
-                    <span>部门名称:</span><span> 水质监测科</span>
+                    <span>部门名称:</span><span> 观测站</span>
                 </div>
                 <div class="item">
                     <span>人员姓名:</span>
                     <span>
-                        <input type="text" value='张松林'>
+                        <input type="text" v-model="name">
                     </span>
                 </div>
                 <div class="item">
                     <span>职务名称:</span>
                     <span>
-                        <input type="text" value='科员'>
+                        <input type="text" v-model="work">
                     </span>
                 </div>
                 <div class="item">
                     <span>联系电话:</span>
                     <span>
-                        <input type="text" value='180....4489'>
+                        <input type="text" v-model="tel">
                     </span>
                 </div>
             </div>
             <div class='alertBtn'>
                 <button class='totalBtn removeBtn' @click='show()'>取消</button>
                 &nbsp;
-                <button class='totalBtn saveBtn'>保存</button>
+                <button class='totalBtn saveBtn' :disabled='ableFlag' @click='setMsg()'>保存</button>
             </div>
         </div>
     </transition>
@@ -45,10 +45,64 @@
 
 <script type="text/ecmascript-6">
 export default {
-  props: ['flag','show'],
+  props: ['flag','show','flag2','itemsg'],
   data() {
     return {
-       
+       newName:'',
+       newWork:'',
+       newTel:'',
+       ableFlag:true
+    }
+  },
+  computed: {
+    name:{
+      get(){
+        return this.itemsg.name
+      },
+      set(value){
+        this.newName = value
+        this.ableFlag = false
+      }
+    },
+    work:{
+      get(){
+        return this.itemsg.work
+      },
+      set(value){
+        this.newWork = value
+        this.ableFlag = false
+      }
+    },
+    tel:{
+      get(){
+        return this.itemsg.tel
+      },
+      set(value){
+        this.newTel = value
+        this.ableFlag = false
+      }
+    }
+  },
+  methods: {
+    setMsg(){
+      if(!this.newName){
+        this.newName = this.itemsg.name
+      }
+      if(!this.newWork){
+        this.newWork = this.itemsg.work
+      }
+      if(!this.newTel){
+        this.newTel = this.itemsg.tel
+      }
+      console.log(this.newName,this.newWork,this.newTel)
+      var bool = confirm('确认修改此数据吗？')
+      if(bool){
+        this.itemsg.name = this.newName
+        this.itemsg.work = this.newWork
+        this.itemsg.tel = this.newTel
+        this.show()
+        this.ableFlag = true
+      }
     }
   }
 }
@@ -79,11 +133,14 @@ export default {
   .fade-enter-active,.fade-leave-active{
     transform-origin: 50% 50%;
     transition: all 0.5s;
-    transform: scale(1)
   }
   .fade-enter,.fade-leave-to{
-    
+    opacity: 0;
     transform: scale(0)
+  }
+  .fade-leave, .fade-enter-to {
+    opacity: 1;
+    transform: scale(1)
   }
   .alertTop {
     overflow: hidden;

@@ -1,12 +1,12 @@
 <template>
     <div class='selectBox'>
-        <select name="selects">
+        <select class="selects" name="selects">
             <option value="">选择单位</option>
         </select>
-        <select name="selects">
+        <select class="selects" name="selects">
             <option value="">选择部门</option>
         </select>
-        <select name="selects">
+        <select class="selects" name="selects">
             <option value="">选择角色</option>
         </select>
         <input type="text" placeholder="输入关键字" class='searchInput'>
@@ -38,7 +38,7 @@ export default {
     align-items: center;
     margin-bottom: 12px;
   }
-  .selectBox [name="selects"] {
+  .selectBox .selects {
     display: block;
     box-sizing: border-box;
     width: 160px;

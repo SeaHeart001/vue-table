@@ -16,20 +16,20 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr class='tableTr tableBody' v-for="item in new Array(10)">
+                  <tr class='tableTr tableBody' v-for="(item,index) in msg">
                       <td style='width: 5%;'>
                           <input type="checkbox">
                       </td>
-                      <td style='width: 8%;'>NO.yh001</td>
-                      <td style='width: 8%;'>李珊</td>
+                      <td style='width: 8%;'>{{item.num}}</td>
+                      <td style='width: 8%;'>{{item.name}}</td>
                       <td style='width: 9%;'>气象局</td>
                       <td style='width: 10%;'>观测站</td>
-                      <td style='width: 10%;'>主任</td>
-                      <td style='width: 15%;'>18695330064</td>
+                      <td style='width: 10%;'>{{item.work}}</td>
+                      <td style='width: 15%;'>{{item.tel}}</td>
                       <td style='width: 10%;'>系统管理员</td>
-                      <td style='width: 15%;'>2018-8-14 12:23:30</td>
+                      <td style='width: 15%;'>{{item.date}}</td>
                       <td style='width: 10%;'>
-                          <a href="javascript:;">编辑</a>
+                          <a href="javascript:;" @click='show(index)'>编辑</a>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a href="javascript:;">删除</a>
                       </td>
@@ -41,10 +41,17 @@
 
 <script type="text/ecmascript-6">
 export default {
+  props:['show','msg'],
   data() {
     return {
-   
+        
     }
+  },
+  methods: {
+    // showMsg(index){
+    //     //console.log(index)
+    //     this.show(index)
+    // }
   }
 }
 </script>
