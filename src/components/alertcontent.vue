@@ -107,8 +107,8 @@ export default {
       msgObj.name = this.newName
       msgObj.work = this.newWork
       msgObj.tel = this.newTel
-      msgObj.date = 'TEST'
-      msgObj.num = 'TEST'
+      msgObj.date = new Date()
+      msgObj.num = Math.floor(Math.random()*10+10)
       this.add(msgObj)
       this.show()
     },

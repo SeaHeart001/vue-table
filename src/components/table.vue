@@ -16,11 +16,11 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr class='tableTr tableBody' v-for="(item,index) in msg">
+                  <tr class='tableTr tableBody' v-for="(item,index) in myMsg" :id='index'>
                       <td style='width: 5%;'>
                           <input type="checkbox">
                       </td>
-                      <td style='width: 8%;'>{{item.num}}</td>
+                      <td style='width: 8%;'>yh00{{item.NO}}</td>
                       <td style='width: 8%;'>{{item.name}}</td>
                       <td style='width: 9%;'>气象局</td>
                       <td style='width: 10%;'>观测站</td>
@@ -47,12 +47,20 @@ export default {
         
     }
   },
-  methods: {
-    // showMsg(index){
-    //     //console.log(index)
-    //     this.show(index)
+  computed: {
+      myMsg(){
+          for (var i = 0; i < this.msg.length; i++) {
+              this.msg[i].NO = i<9?'0'+(i+1):i+1
+          }
+          return this.msg
+      }
+    // myMsg(){
+    //     return this.msg.map((item, index)=>{
+    //         return item.NO = index<10?'0'+(index+1):index
+    //     })
     // }
-  }
+  },
+  
 }
 </script>
 
