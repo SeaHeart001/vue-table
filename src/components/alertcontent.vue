@@ -45,7 +45,7 @@
 
 <script type="text/ecmascript-6">
 export default {
-  props: ['flag','show','flag2','itemsg','isAddCode'],
+  props: ['flag','show','flag2','itemsg','isAddCode','add'],
   data() {
     return {
        newName:'',
@@ -94,14 +94,30 @@ export default {
     commit(){
       if(this.isAddCode){
         this.setMsg()
+      }else{
+        this.addMsg()
       }
     },
+    addMsg(){
+      if(this.ableFlag||!this.newName||!this.newWork||!this.newTel){
+        alert('请完善信息后提交!')
+        return
+      }
+      var msgObj = {}
+      msgObj.name = this.newName
+      msgObj.work = this.newWork
+      msgObj.tel = this.newTel
+      msgObj.date = 'TEST'
+      msgObj.num = 'TEST'
+      this.add(msgObj)
+      this.show()
+    },
     setMsg(){
-      console.log(this.isAddCode)
       if(this.ableFlag||this.newName===this.itemsg.name&&this.newWork===this.itemsg.work&&this.newTel===this.itemsg.tel){
         alert('未修改任何数据')
         return
       }
+      //修改时初始化弹窗数据
       if(!this.newName){
         this.newName = this.itemsg.name
       }

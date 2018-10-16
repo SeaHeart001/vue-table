@@ -31,7 +31,7 @@
                       <td style='width: 10%;'>
                           <a href="javascript:;" @click='show(index)'>编辑</a>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a href="javascript:;">删除</a>
+                          <a href="javascript:;" @click="deleteMsg(index)">删除</a>
                       </td>
                   </tr>
               </tbody>
@@ -41,7 +41,7 @@
 
 <script type="text/ecmascript-6">
 export default {
-  props:['show','msg'],
+  props:['show','msg','deleteMsg'],
   data() {
     return {
         

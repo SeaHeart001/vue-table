@@ -4,10 +4,10 @@
       <!-- 头部 -->
       <mysearch :show='show'></mysearch>
       <!-- 表格部分 -->
-      <mytable :show='show' :msg='msg'></mytable>
+      <mytable :show='show' :msg='msg' :deleteMsg='deleteMsg'></mytable>
     </div>    
     <!-- 弹出层 -->
-    <alertcontent :flag='flag' :flag2='flag2' :show='show' :itemsg='itemsg' :isAddCode='isAddCode'></alertcontent>
+    <alertcontent :flag='flag' :flag2='flag2' :add='add' :show='show' :itemsg='itemsg' :isAddCode='isAddCode'></alertcontent>
   </div>
 </template>
 
@@ -56,6 +56,13 @@ export default {
           this.isAddCode = Object.keys(this.itemsg).length
         }
       }
+    },
+    add(msgObj){
+      this.msg.unshift(msgObj)
+    },
+    deleteMsg(index){
+      var bool = confirm('确认删除此数据吗')
+      bool&&this.msg.splice(index,1)
     }
   },
   components: {
